@@ -1,0 +1,67 @@
+{
+"Applications": [{"Name": "Hadoop"}, {"Name": "Spark"}],
+"BootstrapActions": [{"Name": "SetTimezone", "ScriptBootstrapAction": {"Path": "s3://test_tz.sh", "Args": ["America/New_York"]} }, {"Name": "Autoterminate","ScriptBootstrapAction": {"Path": "s3://test_autoterminate.sh", "Args": ["2", "hours"]}}],
+"Instances": { "Ec2KeyName": "test1", "Ec2SubnetIds": [""],
+"InstanceFleets": [
+    {"Name": "Master", "InstanceFleetType": "MASTER", "TargetOnDemandCapacity": 1,
+      "InstanceTypeConfigs": [{"InstanceType": "r5.4xlarge"}] },
+    { "Name": "Core","InstanceFleetType": "CORE","TargetOnDemandCapacity": 16,
+        "InstanceTypeConfigs": [{"InstanceType": "r5.4xlarge", "WeightedCapacity": 16},
+                        {"InstanceType": "r5.8xlarge", "WeightedCapacity": 32},
+                        {"InstanceType": "r5.12xlarge", "WeightedCapacity": 48},
+                        {"InstanceType": "r5.16xlarge", "WeightedCapacity": 64},
+                        {"InstanceType": "r5.24xlarge", "WeightedCapacity": 96}] },
+
+  { "Name": "TASK","InstanceFleetType": "TASK","TargetOnDemandCapacity": 0,"TargetSpotCapacity": 500,
+        "InstanceTypeConfigs": [
+                        {"InstanceType": "r5.4xlarge","WeightedCapacity": 16,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 200}, "VolumesPerInstance": 1}]}},
+                        { "InstanceType": "r5.8xlarge", "WeightedCapacity": 32, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 400}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5.12xlarge", "WeightedCapacity": 48, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 600}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5.16xlarge", "WeightedCapacity": 64, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 800}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5.24xlarge", "WeightedCapacity": 96, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 1200}, "VolumesPerInstance": 1}]} } ] },
+
+  { "Name": "TASK","InstanceFleetType": "TASK","TargetOnDemandCapacity": 0,"TargetSpotCapacity": 500,
+        "InstanceTypeConfigs": [
+                        {"InstanceType": "r5a.large","WeightedCapacity": 16,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 200}, "VolumesPerInstance": 1}]}},
+                        { "InstanceType": "r5a.xlarge", "WeightedCapacity": 32, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 400}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.2xlarge", "WeightedCapacity": 64, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 600}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.4xlarge", "WeightedCapacity": 128, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 800}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.8xlarge", "WeightedCapacity": 256, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 1200}, "VolumesPerInstance": 1}]} } ] },
+
+    { "Name": "TASK","InstanceFleetType": "TASK","TargetOnDemandCapacity": 0,"TargetSpotCapacity": 500,
+        "InstanceTypeConfigs": [
+                        {"InstanceType": "r5a.large","WeightedCapacity": 16,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 200}, "VolumesPerInstance": 1}]}},
+                        { "InstanceType": "r5a.xlarge", "WeightedCapacity": 32, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 400}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.2xlarge", "WeightedCapacity": 64, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 600}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.4xlarge", "WeightedCapacity": 128, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 800}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.8xlarge", "WeightedCapacity": 256, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 1200}, "VolumesPerInstance": 1}]} } ] },
+
+    { "Name": "TASK","InstanceFleetType": "TASK","TargetOnDemandCapacity": 0,"TargetSpotCapacity": 500,
+        "InstanceTypeConfigs": [
+                        {"InstanceType": "r5a.large","WeightedCapacity": 16,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 200}, "VolumesPerInstance": 1}]}},
+                        { "InstanceType": "r5a.xlarge", "WeightedCapacity": 32, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 400}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.2xlarge", "WeightedCapacity": 64, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 600}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.4xlarge", "WeightedCapacity": 128, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 800}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.8xlarge", "WeightedCapacity": 256, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 1200}, "VolumesPerInstance": 1}]} } ] },
+
+    { "Name": "TASK","InstanceFleetType": "TASK","TargetOnDemandCapacity": 0,"TargetSpotCapacity": 500,
+        "InstanceTypeConfigs": [
+                        {"InstanceType": "r5a.large","WeightedCapacity": 16,"EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 200}, "VolumesPerInstance": 1}]}},
+                        { "InstanceType": "r5a.xlarge", "WeightedCapacity": 32, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 400}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.2xlarge", "WeightedCapacity": 64, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 600}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.4xlarge", "WeightedCapacity": 128, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 800}, "VolumesPerInstance": 1}]} },
+                        { "InstanceType": "r5a.8xlarge", "WeightedCapacity": 256, "EbsConfiguration":{"EbsBlockDeviceConfigs":[{"VolumeSpecification":{"VolumeType": "gp2","SizeInGB": 1200}, "VolumesPerInstance": 1}]} } ] }
+],
+
+"KeepJobFlowAliveWhenNoSteps": true,
+"TerminationProtected": false,
+"AdditionalMasterSecurityGroups": [] },
+"Configurations": [ { "Classification": "mapred-site", "Properties": { "mapreduce.map.java.opts": "-Xmx6000m", "mapreduce.reduce.java.opts": "-Xmx6000m", "mapreduce.map.memory.mb": "8000", "mapreduce.job.reduce.slowstart.completedmaps": "0.95", "mapreduce.task.io.sort.factor" : "64", "mapreduce.map.sort.spill.percent" : "0.8", "mapreduce.task.io.sort.mb" : "1024" } } ],
+"ManagedScalingPolicy": { "ComputeLimits": { "MinimumCapacityUnits": 100, "MaximumCoreCapacityUnits": 100, "MaximumCapacityUnits": 200, "UnitType": "InstanceFleetUnits" } },
+"Name": "",
+"LogUri": "s3://emr-logs",
+"JobFlowRole": "",
+"ServiceRole": "",
+"ReleaseLabel": "emr-6.9.0"
+}
+
